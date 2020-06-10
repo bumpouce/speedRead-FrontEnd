@@ -15,7 +15,8 @@ const AuthHOC = WrappedComponent => {
     checkLogin = () => {
  
       if (!localStorage.getItem("token")) {
-        this.props.history.push("/login")
+        console.log('Please log in!')
+        this.props.history.push("/")
       } else {
         fetch(`http://localhost:3000/check_user`, {
             headers:
@@ -23,10 +24,11 @@ const AuthHOC = WrappedComponent => {
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`
     }})
-          .then(res => res.json())
+        .then(res => res.json())
         .then((resp) => {
           if (resp.error) {
-            this.props.history.push("/login")
+            console.log('There was an error with login')
+            this.props.history.push("/")
           } else {
             this.props.setUser(resp.user)
             this.setState({

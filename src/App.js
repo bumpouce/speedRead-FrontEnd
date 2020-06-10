@@ -1,14 +1,14 @@
 import React, {PureComponent, Fragment } from 'react';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import TopBar from './component/TopBar'
-import Login from './component/Login'
-import Footer from './component/Footer'
-import Leaderboard from './component/Leaderboard';
-import UserHome from './component/UserHome'
-import About from './component/About'
-import GameContainer from './component/GameContainer'
+import './CSS/App.css';
+
+import NavBar from './containers/NavBarContainer'
+import Login from './containers/LoginContainer'
+import Footer from './containers/FooterContainer'
+import Charts from './containers/ChartsContainer';
+import Tips from './containers/TipsContainer'
+import Read from './containers/ReadingContainer'
 
 export default class App extends PureComponent {
 
@@ -18,7 +18,7 @@ export default class App extends PureComponent {
 
   onLogout=()=> {
     this.setState({user: ""})
-    localStorage.removeItem('token')
+    localStorage.clear()
   }
 
   setUser=(user)=> {
@@ -29,13 +29,12 @@ export default class App extends PureComponent {
       return (
         <Fragment>
         <Router>
-        <Route path="/" render={props => <TopBar  {...props} onLogout={this.onLogout}/>}/>
-        <Route exact path="/"> {this.state.user ? <Redirect to="/login" /> : <Redirect to="/home"/>}</Route>
-        <Route exact path="/login" render={props => <Login {...props} onLogin={this.setUser} />}/>
-        <Route path= '/about' render={props => <About {...props} setUser={this.setUser} />}/>
-        <Route path= '/home' render={props => <UserHome {...props} setUser={this.setUser} user={this.state.user} />}/>
-        <Route path= '/leaderboard' render={props => <Leaderboard {...props} setUser={this.setUser} />}/>
-        <Route path= '/play' render={props => <GameContainer {...props} setUser={this.setUser} />}/>
+        <Route path="/" render={props => <NavBar  {...props} onLogout={this.onLogout}/>}/>
+        <Route exact path="/"> {this.state.user ? <Redirect to="/practice" /> : <Redirect to="/"/>}</Route>
+        <Route exact path="/" render={props => <Login {...props} onLogin={this.setUser} />}/>
+        <Route path= '/stats' render={props => <Charts {...props} setUser={this.setUser} />}/>
+        <Route path= '/tips' render={props => <Tips {...props} setUser={this.setUser} /> } />
+        <Route path= '/practice' render={props => <Read {...props} setUser={this.setUser} />} />
         </Router>
         <Footer />
         </Fragment>
