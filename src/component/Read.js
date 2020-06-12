@@ -23,17 +23,15 @@ class Read extends Component{
 
         return(
             <div>
+                <br></br><br></br>
+                <p className="practice-state"> {header}</p>                    
                 <div>
-
-                    <br></br><br></br>
-                    <h3 className="practice-state"> {header}</h3>                    
                     <Carousel showArrows={false} itemPadding={[50,0,0,0]} verticalMode enableAutoPlay={this.state.autoPlay} autoPlaySpeed={1015} transitionMs={15} pagination={false}  > 
                             {sections.map((section, index) => {
                                 return <TextSection key={index} text={section}/>}) }
                     </Carousel>
-                    
-                    <br></br><br></br>
                 </div>
+                <br></br>
                 <Editor
                     initialValue=""
                     init={{
@@ -55,7 +53,7 @@ class Read extends Component{
                     }
                     }
                     onEditorChange={onHandleUserReading}
-                />
+                /><br></br>
                 <Button onClick={updateState}>Next Step!</Button>
             </div>
         ) 

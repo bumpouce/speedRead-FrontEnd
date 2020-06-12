@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Bar,Line} from 'react-chartjs-2'
+import {Pie, Bar,Line} from 'react-chartjs-2'
 
 export default class Stats extends Component {
 
@@ -66,7 +66,34 @@ export default class Stats extends Component {
                         }]
                     }}
                     options={{
-                        title: {display:true, text: "Skimming Pace", fontColor:"#003636", fontSize:20}
+                        title: {display:true, text: "Self-Evaluation of Skimming Pace", fontColor:"#003636", fontSize:20}
+                    }}
+                />
+                </p>
+                <p className="chart_setup">
+                <Pie
+                    data={{
+                        labels: Object.keys(skimAnalysis),
+                        datasets: [{
+                            label: 'Comprehension Rating',
+                            fill: false,
+                            lineTension: 0.5,
+                            backgroundColor:"#bc5090",
+                            borderColor:"#bc5090",
+                            borderWidth:2,
+                            data: comprehension
+                        },{
+                            label: 'Pace Rating',
+                            fill: false,
+                            lineTension: 0.5,
+                            backgroundColor:"#ff6361",
+                            borderColor:"#ff6361",
+                            borderWidth:2,
+                            data: pace
+                        }]
+                    }}
+                    options={{
+                        title: {display:true, text: "Self-Evaluation of Skimming Pace", fontColor:"#003636", fontSize:20}
                     }}
                 />
                 </p>

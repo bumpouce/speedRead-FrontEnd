@@ -84,7 +84,7 @@ class Practice extends Component {
                     reading_id: id,
                     skimWPM: skimWPM,
                     deepWPM: deepWPM,
-                    position: position + 250,
+                    position: this.props.practiceState.position + 250,
                     comprehensionRating: comprehensionRating.value,
                     paceRating: paceRating.value,
                     created: created
@@ -114,19 +114,15 @@ class Practice extends Component {
 
         return (
             <div>
-                <Container>
-                    <Jumbotron>
-                        <div className="game-form text-center">
-                            <h4>{title} </h4>
-                            <h4 >by {author}</h4>
+                <div className="game-form text-center">
+                    <label>{title}</label><br></br>
+                    <label>by {author}</label>
 
-                            {(this.state.step === "skim") ? <Read header="Skim" sections={this.prepareText(practiceSet, skimWPM)} updateState={() => this.handleStep("read")} onHandleUserReading={this.createUserReading} /> : null}
-                            {(this.state.step === "read") ? <Read header="Read Carefully" sections={this.prepareText(practiceSet, deepWPM)} updateState={() => this.handleStep("review")} onHandleUserReading={this.updateUserReading}/> : null}
-                            {(this.state.step === "review") ? <Review text={practiceSet} skimNote={this.state.skimNote} readNote={this.state.readNote} onCompletePractice={this.completePractice}/> : null}                                        
-                        </div>
-                    </Jumbotron>
-                    {(this.state.visible) ? <ModalComp visible={this.state.visible} closeModal={this.closeModal} /> : null}
-                </Container>
+                    {(this.state.step === "skim") ? <Read header="Skim" sections={this.prepareText(practiceSet, skimWPM)} updateState={() => this.handleStep("read")} onHandleUserReading={this.createUserReading} /> : null}
+                    {(this.state.step === "read") ? <Read header="Read Carefully" sections={this.prepareText(practiceSet, deepWPM)} updateState={() => this.handleStep("review")} onHandleUserReading={this.updateUserReading}/> : null}
+                    {(this.state.step === "review") ? <Review text={practiceSet} skimNote={this.state.skimNote} readNote={this.state.readNote} onCompletePractice={this.completePractice}/> : null}                                        
+                </div>
+                {(this.state.visible) ? <ModalComp visible={this.state.visible} closeModal={this.closeModal} /> : null}
             </div>
         )
     }

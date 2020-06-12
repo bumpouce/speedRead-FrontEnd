@@ -4,12 +4,13 @@ import AuthHOC from '../HOC/AuthHOC'
 import ContinueTextForm from './ContinueTextForm'
 import ExistingTextForm from './ExistingTextForm'
 import NewTextForm from './NewTextForm'
+import question from '../images/question.png'
 
 const ReadingURL = "http://localhost:3000/readings/"
 
 export class SetupForm extends Component {
     state = {
-		skimWPM: 500,
+		skimWPM: 350,
 		deepWPM: 75,
 		list: [],
 		useFrom: "",
@@ -116,32 +117,35 @@ export class SetupForm extends Component {
                 <h1>Set Up</h1>
                 <hr/>
 					<h3>Choose Your Reading Speed</h3><br></br>
-                    <div class="form-group">
+                    <div>
 	                    <label>Skim Speed</label>
-    	                <input className="setup-boxes" name="skimWPM" type="number" min="60" max="2000" placeholder="500" onChange={event=> this.handleChange(event)}/>
+    	                <input className="setup-boxes" name="skimWPM" type="number" min="60" max="2000" placeholder="350" onChange={event=> this.handleChange(event)}/>
+						<span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Words per minute, at your desired fast reading speed</span></span>
                     </div>
-                    <div class="form-group">
+                    <div>
  	                   	<label>Comprehension Speed</label>
 						<input className="setup-boxes" name="deepWPM" type="number" min="60" max="1000" placeholder="75" onChange={event=> this.handleChange(event)}/>
+						<span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Word per minute, at your comfortable reading speed</span></span>
                     </div>
 					<br></br>
-                    <div class="form-group" onClick={this.handleTextType}>
-            	        <h3>Text Source</h3><br></br>
-						<label><input type="radio" name="useFrom" value="new"/>Add new text</label><br></br>
-						<label><input type="radio" name="useFrom" value="default" />Use a default text</label><br></br>
-						<label><input type="radio" name="useFrom" value="continue"/>Continue a text</label>
+                    <div onClick={this.handleTextType}>
+            	        <h3>Text Source</h3>
+						<br></br>
+						<label><input type="radio" name="useFrom" value="new"/>Add new text</label><span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Add reading material to our collection</span></span><br></br>
+						<label><input type="radio" name="useFrom" value="default" />Start a default text</label><span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Start reading something from our collection</span></span><br></br>
+						<label><input type="radio" name="useFrom" value="continue"/>Continue a text</label><span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Continue a reading you already started</span></span>
                     </div>
                     <hr/>
 					<div >
 						{this.state.useFrom === "new" ?  <NewTextForm  onAddNew={this.addText}/> : null}
 					</div>
-					<div className="form-group">
+					<div >
 						{this.state.useFrom === "continue" ? <ContinueTextForm onSelectText={this.continueText}/> : null}
 					</div>
-					<div className="form-group">
+					<div >
 						{this.state.useFrom === "default" ?  <ExistingTextForm  list={this.state.list} onSelectText={this.selectText}/> : null}
 					</div>
-                    <div class="form-group">
+                    <div>
                         {this.state.useFrom === "start" ? <Button variant="primary" onClick={(event) => this.handleSubmit(event)}><b>Start Reading</b><br></br>"{this.state.title}"</Button> : null}
                     </div>
             </div>

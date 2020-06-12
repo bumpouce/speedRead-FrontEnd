@@ -48,8 +48,8 @@ class ExistingTextForm extends Component {
                {this.state.filteredList.map(item => {
                     return  (
                         <tr className="title-list" key={item.id} onClick={() => onSelectText(item)}>
-                            <td align={"center"}> {item.title}</td>
-                            <td>L: {item.level}</td>
+                            <td align={"center"}width="75%"> {item.title}</td>
+                            <td width="25%">L: {item.level}</td>
                         </tr>
                         )
                 })}

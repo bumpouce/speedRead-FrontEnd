@@ -11,7 +11,7 @@ export class TopBar extends Component {
     render() {
         return (
           <Fragment>
-            <Navbar expand="lg">
+            <Navbar expand="sm">
             <Navbar.Brand href="/home" className="navbar-left"></Navbar.Brand>
             <iframe src="https://giphy.com/embed/xUA7b2OfgTuVzqpVXq" class="logo"></iframe>
               <Nav className="mr-auto">
@@ -26,6 +26,7 @@ export class TopBar extends Component {
                   null
                }
               </Nav>
+              <h1>readSpeed</h1>
           </Navbar>
           </Fragment>
         )

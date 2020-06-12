@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
 import {Button} from 'react-bootstrap'
 import { Editor } from '@tinymce/tinymce-react';
+import question from '../images/question.png'
 
 const rs = require('text-readability')
 
@@ -13,7 +14,7 @@ class NewTextForm extends PureComponent {
         author: "not provided",
         title: "not provided",
         completeText: "not provided",
-        level: "100"
+        level: ""
     }
 
     analyzeText = (event) => {
@@ -31,7 +32,7 @@ class NewTextForm extends PureComponent {
     render(){
     return ( 
     <div>
-        <h3>Submit your own reading material</h3>
+        <h3>Add new reading material</h3>
         <form>
             <label for="category">Category</label>
             <select id="category" name="category" onChange={event=> this.handleChange(event)}>
@@ -39,14 +40,22 @@ class NewTextForm extends PureComponent {
                 <option value="News">News</option>
                 <option value="Academic">Academic</option>
                 <option value="Other">Other</option>
-            </select><br></br>
+            </select>
+            <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Choose a general category of this reading</span></span>
+            <br></br>
 
             <label for="source">Origin URL</label>
-            <input className="setup-boxes" type="text" name="source" onChange={event=> this.handleChange(event)}></input><br></br>
+            <input className="setup-boxes" type="text" name="source" onChange={event=> this.handleChange(event)}></input>
+            <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Where did you find this piece?</span></span>
+            <br></br>
             <label for="author">Author</label>
-            <input className="setup-boxes" type="text" name="author" onChange={event=> this.handleChange(event)}></input><br></br>
+            <input className="setup-boxes" type="text" name="author" onChange={event=> this.handleChange(event)}></input>
+            <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Who wrote this piece?</span></span>
+            <br></br>
             <label for="title">Title</label>
-            <input className="setup-boxes" type="text" name="title" onChange={event=> this.handleChange(event)}></input><br></br>
+            <input className="setup-boxes" type="text" name="title" onChange={event=> this.handleChange(event)}></input>
+            <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">What is this piece called?</span></span>
+            <br></br>
 
             <Editor
                 initialValue=""
@@ -68,7 +77,9 @@ class NewTextForm extends PureComponent {
                 }
                 onEditorChange={this.analyzeText}
             />
-            <Button onClick={(event) => this.props.onAddNew(this.state)}>Add New Text</Button>
+            {(this.state.level !== "") ? <h4>Reading Level: {this.state.level}</h4> : null}
+            <Button onClick={(event) => this.props.onAddNew(this.state)}>Submit New Text</Button>
+            <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">This piece will be available for all users to read</span></span>
         </form>
     </div>
     )}
