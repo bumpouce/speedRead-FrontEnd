@@ -28,22 +28,51 @@ export class Charts extends Component {
         let deep = []
         let skim = []
         let skimAnalysis = {}
+        let paceAnalysis = {"too slow":0, "good": 0, "too fast":0}
+        let comprehensionAnalysis = {"a little": 0, "some": 0, "a lot":0, "almost all":0}
 
+        // console.log(this.state.user_readings.length)
         this.state.user_readings.forEach(practice => {
             date.push(practice.created.split("T")[0])
             deep.push(practice.deepWPM)
             skim.push(practice.skimWPM)
+
+            if (!Object.keys(skimAnalysis).includes(practice.skimWPM.toString())){
+                console.log("New key")
+                skimAnalysis[practice.skimWPM.toString()] = [practice.comprehensionRating,practice.paceRating]
+            }
+            else {
+                console.log("Adding to key")
+                skimAnalysis[practice.skimWPM.toString()][0] = parseInt((practice.comprehensionRating + skimAnalysis[practice.skimWPM.toString()][0]) / 2)
+                skimAnalysis[practice.skimWPM.toString()][1] = parseInt((practice.paceRating + skimAnalysis[practice.skimWPM.toString()][1]) / 2)
+            }
+
+            switch (practice.paceRating){
+                case 1:{
+                    paceAnalysis["too slow"] += 1
+                    break}
+                case 2:{
+                    paceAnalysis["good"] += 1
+                    break}
+                default:{paceAnalysis["too fast"] += 1} 
+            }
+
+            switch (practice.comprehensionRating){
+                case 1:{
+                    comprehensionAnalysis["a little"] += 1
+                    break}
+                case 2:{
+                    comprehensionAnalysis["some"] += 1
+                    break}
+                case 3:{
+                    comprehensionAnalysis["a lot"] += 1
+                    break}
+                default:{comprehensionAnalysis["almost all"] += 1} 
+            }
         })      
 
-        this.state.user_readings.forEach(practice => {
-            if (!Object.keys(skimAnalysis).includes(practice.skimWPM)){
-                skimAnalysis[practice.skimWPM] = [[],[]]
-            }
-            skimAnalysis[practice.skimWPM][0].push(practice.comprehensionRating)
-            skimAnalysis[practice.skimWPM][1].push(practice.paceRating)
-            }
-        )
-        return ([date, deep, skim, skimAnalysis])
+        // console.log(skimAnalysis)
+        return ([date, deep, skim, skimAnalysis, paceAnalysis, comprehensionAnalysis])
     }
 
     countFrequency = (data) => {
@@ -89,7 +118,7 @@ export class Charts extends Component {
                     </div><br></br>
                 </section>
                 <section>
-                    <Stats dates={data[0]} deep={data[1]} skim={data[2]} skimAnalysis={data[3]}/>
+                    <Stats dates={data[0]} deep={data[1]} skim={data[2]} skimAnalysis={data[3]} paceAnalysis={data[4]} comprehensionAnalysis={data[5]}/>
                 </section>
             </div >
         )

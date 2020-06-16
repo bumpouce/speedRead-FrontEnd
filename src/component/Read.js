@@ -15,11 +15,12 @@ class Read extends Component{
     }
 
     handleAutoPlay = () => {
-        setTimeout(() => this.setState({autoPlay:true}), 1500)
+        setTimeout(() => this.setState({autoPlay:true}), 1000)
     }
 
     render(){
         let {header, sections, onHandleUserReading, updateState} = this.props
+        let sectionSize = sections[0].split(" ").length
 
         return(
             <div>
@@ -28,7 +29,7 @@ class Read extends Component{
                 <div>
                     <Carousel showArrows={false} itemPadding={[50,0,0,0]} verticalMode enableAutoPlay={this.state.autoPlay} autoPlaySpeed={1015} transitionMs={15} pagination={false}  > 
                             {sections.map((section, index) => {
-                                return <TextSection key={index} text={section}/>}) }
+                                return <TextSection key={index} text={section} len={sectionSize}/>}) }
                     </Carousel>
                 </div>
                 <br></br>

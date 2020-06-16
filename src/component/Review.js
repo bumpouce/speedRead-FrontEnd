@@ -78,7 +78,7 @@ class Review extends Component{
             <p className="practice-state">Evaluate yourself</p>
             <div class="form-group shadow-textarea">
                 <label>Reading Section</label>
-                <textarea class="form-control z-depth-1" id="text" rows="3" cols="80" disabled>{text}</textarea>
+                <textarea class="form-control z-depth-1" id="text" rows="11" cols="80" disabled>{text}</textarea>
                 <p className="reading-sound">
                 <table align="center">
                     <tr>

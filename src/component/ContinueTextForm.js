@@ -9,9 +9,9 @@ class ContinueTextForm extends Component{
 
     componentDidMount(){
         this.fetchMyReadings()
+        // console.log(this.state.myList)
     }
 
-    //find unique titles and if there's more than one, keep the one with biggest position
     
     //fetch readings from my user readings
     fetchMyReadings = () => {
@@ -28,12 +28,15 @@ class ContinueTextForm extends Component{
 
         })
         .then(res => res.json())
-        .then(res => this.setState({myList:res}))
+        .then(res => this.handleList(res))
     }
 
+    handleList = (results) => {
+        console.log(results)
+        this.setState({myList:results})
+    }
 
     render() {
-     
         return ( 
             <div> 
             <h3>Continue Reading</h3>
@@ -43,6 +46,7 @@ class ContinueTextForm extends Component{
                 {this.state.myList.map(item => {
                 return  (
                     <tr className="title-list" key={item[1][0].id} onClick={() => this.props.onSelectText(item)}>
+                        <td align={"left"}>{~~((item[0]/item[1][0].wordCount)*100)}%</td>
                         <td align={"center"}> {item[1][0].title}</td>
                         <td width="25%%">L: {item[1][0].level}</td>
                     </tr>

@@ -1,22 +1,23 @@
 import React from 'react'
 
-const difficulty = (text) => {
-    let count = text.split(" ").length
-    console.log("Word count: ", count)
-    if (count <= 3){
-        return "easy"
+const difficulty = (count) => {
+    if (count > 9){
+        console.log("Hard")
+        return "hard"
     }
-    else if (count <= 10){
+    else if (count > 4){
+        console.log("Medium")
         return "medium"
     }
-    else{
-        return "hard"
+    else {
+        console.log("Easy")
+        return "easy"
     }
 }
 
-const TextSection = ({text}) => {
+const TextSection = ({text, len}) => {
     return (
-        <div width="200" className={`reading-section ${difficulty(text)}`}>{text} </div>
+        <div width="200" className={`reading-section ${difficulty(len)}`}>{text} </div>
     )
 }
 

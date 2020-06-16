@@ -5,7 +5,6 @@ import question from '../images/question.png'
 
 const rs = require('text-readability')
 
-
 class NewTextForm extends PureComponent {
 
     state = {
@@ -14,14 +13,18 @@ class NewTextForm extends PureComponent {
         author: "not provided",
         title: "not provided",
         completeText: "not provided",
-        level: ""
+        level: "",
+        wordCount: 0
     }
 
-    analyzeText = (event) => {
+    analyzeText = (event, wordCount) => {
         if (event){
-            this.setState({completeText: event, level: ~~rs.daleChallReadabilityScore(event)})
+            this.setState({
+                completeText: event, level: ~~rs.daleChallReadabilityScore(event),
+                wordCount: wordCount.plugins.wordcount.getCount()
+            })
         }
-        else {this.setState({completeText: "", level: ""})}
+        else {this.setState({completeText: "", level: "", wordCount: 0})}
     }
 
     handleChange = (event) => {
@@ -30,6 +33,7 @@ class NewTextForm extends PureComponent {
     }
 
     render(){
+
     return ( 
     <div>
         <h3>Add new reading material</h3>
@@ -71,13 +75,13 @@ class NewTextForm extends PureComponent {
                 ],
                 paste_data_images: false,
                 paste_as_text: true,
+                outputFormat: "text",
                 toolbar:
                     'undo redo | removeformat | help'
-                }
-                }
+                }}
                 onEditorChange={this.analyzeText}
             />
-            {(this.state.level !== "") ? <h4>Reading Level: {this.state.level}</h4> : null}
+            {(this.state.level !== "") ? <h4>Reading Level: {this.state.level}<span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Estimated grade level difficulty of this reading</span></span></h4>  : null}
             <Button onClick={(event) => this.props.onAddNew(this.state)}>Submit New Text</Button>
             <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">This piece will be available for all users to read</span></span>
         </form>

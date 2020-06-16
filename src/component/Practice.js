@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Jumbotron} from 'react-bootstrap'
+// import { Container, Jumbotron} from 'react-bootstrap'
 import ModalComp from '../component/ModalComp'
 import Read from './Read'
 import Review from './Review'
 
 const USER_READING_URL = 'http://localhost:3000/user_readings'
-const NOTES_URL = `http://localhost:3000/notes`
+// const NOTES_URL = `http://localhost:3000/notes`
 
 class Practice extends Component {
 
@@ -21,7 +21,7 @@ class Practice extends Component {
             id: props.practiceState.id,
             skimWPM: props.practiceState.skimWPM,
             deepWPM: props.practiceState.deepWPM,
-            position: 0, //implement functionality later
+            position: props.practiceState.position, //implement functionality later
             comprehensionRating: 1,
             paceRating: 3,
             created: null,  //this is actually getting set in the ruby side
@@ -33,21 +33,33 @@ class Practice extends Component {
         }
     }
 
-    prepareText = (text, wpm) => {
+    prepareText = (text, wpm, position=0) => {
+
+        let section = this.selectSection(text, position)
         //250 words / (wpm / min) = time to read section
-        //250 words / (time to read section) = words to display per second?
-
-        const timeToRead = ~~(250 / (wpm / 60))
+        //250 words / (time to read section) = words to display per second
+        const timeToRead = Math.ceil(250 / (wpm / 60))
         const wordsPerSec = ~~(250 / timeToRead)
+        console.log(wpm, "wpm: ", wordsPerSec, "wps")
+        console.log("Beginning: ", section[0])
+        console.log("End: ", section[249])
+        console.log("Complete: ", section)
 
-        let displayArr = text.split(" ");
+        let displayArr = section //.split(" ");
         let temp = []
         
-        for (let i=0; i<=timeToRead; i++){
-            let section = displayArr.splice(0,wordsPerSec).join(" ")
-            temp.push(section)
+        for (let i=0; i<=timeToRead+1; i++){
+            let selection = displayArr.splice(0,wordsPerSec).join(" ")
+            console.log(selection)
+            temp.push(selection)
         }
         return temp
+    }
+
+    selectSection = (text, position) => {
+        let cleanText = text.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, " ").replace(/&ldquo;/g, "'").replace(/&rdquo;/g, "'").replace(/&rsquo;/g, "'").replace(/\n|\r/g, "")
+        let practiceSet = cleanText.split(" ").filter(el => {return el != "";}).slice(position,position+250)
+        return practiceSet
     }
 
     createUserReading = (event) => {
@@ -84,7 +96,7 @@ class Practice extends Component {
                     reading_id: id,
                     skimWPM: skimWPM,
                     deepWPM: deepWPM,
-                    position: this.props.practiceState.position + 250,
+                    position: position + 250,//this.props.practiceState.position + 250,
                     comprehensionRating: comprehensionRating.value,
                     paceRating: paceRating.value,
                     created: created
@@ -107,10 +119,9 @@ class Practice extends Component {
     }
 
     render() {
-
         let {position, skimWPM, deepWPM, category, source, author, title, completeText, level} = this.props.practiceState
-        let cleanText = completeText.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, " ").replace(/&ldquo;/g, "'").replace(/&rdquo;/g, "'").replace(/&rsquo;/g, "'")
-        let practiceSet = cleanText.split(" ").filter(el => {return el != "";}).slice(position,position+250).join(" ")  //change slice index to user's place if continuing reading
+        let skimSet = this.prepareText(completeText, skimWPM, position)
+        let deepSet = this.prepareText(completeText, deepWPM, position)
 
         return (
             <div>
@@ -118,9 +129,9 @@ class Practice extends Component {
                     <label>{title}</label><br></br>
                     <label>by {author}</label>
 
-                    {(this.state.step === "skim") ? <Read header="Skim" sections={this.prepareText(practiceSet, skimWPM)} updateState={() => this.handleStep("read")} onHandleUserReading={this.createUserReading} /> : null}
-                    {(this.state.step === "read") ? <Read header="Read Carefully" sections={this.prepareText(practiceSet, deepWPM)} updateState={() => this.handleStep("review")} onHandleUserReading={this.updateUserReading}/> : null}
-                    {(this.state.step === "review") ? <Review text={practiceSet} skimNote={this.state.skimNote} readNote={this.state.readNote} onCompletePractice={this.completePractice}/> : null}                                        
+                    {(this.state.step === "skim") ? <Read header="Skim" sections={skimSet} updateState={() => this.handleStep("read")} onHandleUserReading={this.createUserReading} /> : null}
+                    {(this.state.step === "read") ? <Read header="Read Carefully" sections={deepSet} updateState={() => this.handleStep("review")} onHandleUserReading={this.updateUserReading}/> : null}
+                    {(this.state.step === "review") ? <Review text={this.selectSection(completeText, position).join(" ")} skimNote={this.state.skimNote} readNote={this.state.readNote} onCompletePractice={this.completePractice}/> : null}                                        
                 </div>
                 {(this.state.visible) ? <ModalComp visible={this.state.visible} closeModal={this.closeModal} /> : null}
             </div>

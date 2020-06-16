@@ -10,8 +10,8 @@ const ReadingURL = "http://localhost:3000/readings/"
 
 export class SetupForm extends Component {
     state = {
-		skimWPM: 350,
-		deepWPM: 75,
+		skimWPM: 400,
+		deepWPM: 200,
 		list: [],
 		useFrom: "",
 		category: "",
@@ -21,7 +21,8 @@ export class SetupForm extends Component {
         title: "not provided",
         completeText: "not provided",
 		level: "100",
-		position: 0
+		position: 0,
+		wordCount: 0,
     }
 
 	componentDidMount() {
@@ -32,7 +33,7 @@ export class SetupForm extends Component {
 	createNewReading = () => {
 		let token = localStorage.getItem('token');
 		let username = localStorage.getItem('username')
-		let {category, level, author, title, completeText, source} = this.state
+		let {category, level, author, title, completeText, source, wordCount} = this.state
 
 		fetch(ReadingURL, {method: 'POST',
 			headers: {
@@ -48,7 +49,8 @@ export class SetupForm extends Component {
 					title: title, 
 					completeText: completeText, 
 					source: source, 
-					contributor: username
+					contributor: username, 
+					wordCount: wordCount
 				}
 			})
 		})
@@ -88,8 +90,8 @@ export class SetupForm extends Component {
 		this.setState({useFrom: event.target.value})
 	}
 
-	addText = ({id, category, source, author, title, completeText, level}) => {
-		this.setState({id: id, category: category, source: source, author: author, title: title, completeText: completeText, level: level}, () => this.createNewReading())
+	addText = ({id, category, source, author, title, completeText, level, wordCount}) => {
+		this.setState({id: id, category: category, source: source, author: author, title: title, completeText: completeText, level: level, wordCount: wordCount}, () => this.createNewReading())
 		this.setState({useFrom: "start"})
 	}
 
@@ -119,12 +121,12 @@ export class SetupForm extends Component {
 					<h3>Choose Your Reading Speed</h3><br></br>
                     <div>
 	                    <label>Skim Speed</label>
-    	                <input className="setup-boxes" name="skimWPM" type="number" min="60" max="2000" placeholder="350" onChange={event=> this.handleChange(event)}/>
+    	                <input className="setup-boxes" name="skimWPM" type="number" min="60" max="2000" placeholder="400" onChange={event=> this.handleChange(event)}/>
 						<span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Words per minute, at your desired fast reading speed</span></span>
                     </div>
                     <div>
  	                   	<label>Comprehension Speed</label>
-						<input className="setup-boxes" name="deepWPM" type="number" min="60" max="1000" placeholder="75" onChange={event=> this.handleChange(event)}/>
+						<input className="setup-boxes" name="deepWPM" type="number" min="60" max="1000" placeholder="200" onChange={event=> this.handleChange(event)}/>
 						<span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Word per minute, at your comfortable reading speed</span></span>
                     </div>
 					<br></br>

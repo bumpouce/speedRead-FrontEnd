@@ -219,10 +219,7 @@ label {
   color: #000036;
   font-weight: bold;
 }
-.chart {
-  margin-bottom: 20px;
-  padding: 10;
-}
+
 
 .setup-boxes {
   background-color: #dde7eb;
@@ -286,7 +283,7 @@ label {
 }
 
 .medium {
-  font-size: large;
+  font-size: x-large;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
@@ -301,8 +298,18 @@ label {
   padding-bottom: 20px;
 }
 
-.chart_setup {
+.chart {
+  margin-bottom: 20px;
+  padding: 10;
+}
+
+.table-format {
   background-color: #dde7eb;
+}
+
+.chart_setup {
+  height: 100px;
+  width: 100px;
 }
 
 .reading-sound {

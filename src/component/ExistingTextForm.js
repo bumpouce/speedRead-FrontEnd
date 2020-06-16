@@ -44,11 +44,11 @@ class ExistingTextForm extends Component {
                 </select>
                 <br></br><br></br>
                 <div className="choose_titles">
-                <table>
+                <table width="100%">
                {this.state.filteredList.map(item => {
                     return  (
                         <tr className="title-list" key={item.id} onClick={() => onSelectText(item)}>
-                            <td align={"center"}width="75%"> {item.title}</td>
+                            <td width="75%"> {item.title}</td>
                             <td width="25%">L: {item.level}</td>
                         </tr>
                         )

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
-
+import name from '../images/readSpeed.png'
 
 export class TopBar extends Component {
   handleLogout=()=>{
@@ -26,7 +26,7 @@ export class TopBar extends Component {
                   null
                }
               </Nav>
-              <h1>readSpeed</h1>
+              <img src={name} alt="readSpeed logo"/>
           </Navbar>
           </Fragment>
         )

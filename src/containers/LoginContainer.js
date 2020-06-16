@@ -104,10 +104,10 @@ export class Login extends Component {
                         <hr/>
                         <form onSubmit={this.handleLogin}>
                             <div className="form-group">
-                                <input name="nameLogin" type="text" className="form-control" placeholder="User Name" value={this.state.nameLogin} onChange={this.handleChange} />
+                                <input name="nameLogin" required type="text" className="form-control" placeholder="User Name" value={this.state.nameLogin} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
-                                <input name="passwordLogin" type="password" className="form-control" placeholder="Your Password *" value={this.state.passwordLogin} onChange={this.handleChange} />
+                                <input name="passwordLogin" required type="password" className="form-control" placeholder="Your Password *" value={this.state.passwordLogin} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
                                 <input type="submit" className="btnSubmit" value="Login" />
@@ -119,16 +119,16 @@ export class Login extends Component {
                         <hr/>
                         <form onSubmit={this.handleCreateUser}>
                             <div className="form-group">
-                                <input name="nameSignup" type="text" className="form-control" placeholder="User Name" value={this.state.nameSignup} onChange={this.handleChange} />
+                                <input name="nameSignup" required type="text" className="form-control" placeholder="User Name" value={this.state.nameSignup} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
-                                <input name="firstname" type="text" className="form-control" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange} />
+                                <input name="firstname" required type="text" className="form-control" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
-                                <input name="lastname" type="text" className="form-control" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange} />
+                                <input name="lastname" required type="text" className="form-control" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
-                                <input name="passwordSignup" type="password" className="form-control" placeholder="Your Password *" value={this.state.passwordSignup} onChange={this.handleChange} />
+                                <input name="passwordSignup" required type="password" className="form-control" placeholder="Your Password *" value={this.state.passwordSignup} onChange={this.handleChange} />
                             </div>
                             <div >
                             <input name="agreement" id="agreement" type="checkbox"  placeholder="Content Agreement" onClick={this.handleCheck} /> 
