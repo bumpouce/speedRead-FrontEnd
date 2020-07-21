@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/speedRead-FrontEnd/static/css/main.915d0bee.chunk.css",
+    "main.js": "/speedRead-FrontEnd/static/js/main.aa00a361.chunk.js",
+    "main.js.map": "/speedRead-FrontEnd/static/js/main.aa00a361.chunk.js.map",
+    "runtime-main.js": "/speedRead-FrontEnd/static/js/runtime-main.76249f31.js",
+    "runtime-main.js.map": "/speedRead-FrontEnd/static/js/runtime-main.76249f31.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/speedRead-FrontEnd/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.c0df8ed8.chunk.js": "/speedRead-FrontEnd/static/js/2.c0df8ed8.chunk.js",
+    "static/js/2.c0df8ed8.chunk.js.map": "/speedRead-FrontEnd/static/js/2.c0df8ed8.chunk.js.map",
+    "index.html": "/speedRead-FrontEnd/index.html",
+    "precache-manifest.0015753ea58f6585cae035075a81abde.js": "/speedRead-FrontEnd/precache-manifest.0015753ea58f6585cae035075a81abde.js",
+    "service-worker.js": "/speedRead-FrontEnd/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/speedRead-FrontEnd/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.915d0bee.chunk.css.map": "/speedRead-FrontEnd/static/css/main.915d0bee.chunk.css.map",
+    "static/js/2.c0df8ed8.chunk.js.LICENSE.txt": "/speedRead-FrontEnd/static/js/2.c0df8ed8.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/speedRead-FrontEnd/static/media/otis-redding.9befbfcf.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.76249f31.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.c0df8ed8.chunk.js",
+    "static/css/main.915d0bee.chunk.css",
+    "static/js/main.aa00a361.chunk.js"
+  ]
+}
