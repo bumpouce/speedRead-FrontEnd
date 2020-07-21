@@ -1,9 +1,5 @@
 import React, {Component} from 'react'
 
-// const displayTitle = (list) => {
-//         list.forEach(item => {return <li>Item: {item.title}</li>})
-// }
-
 //if you click on a title, it should send the info on that title to state in the setupform and highlight the option
 
 class ExistingTextForm extends Component {

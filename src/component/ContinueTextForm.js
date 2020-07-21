@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+const CONTINUE_URL = 'https://readspeedbackend.herokuapp.com/continue'
 
 class ContinueTextForm extends Component{
 
@@ -18,7 +19,7 @@ class ContinueTextForm extends Component{
         let id = localStorage.getItem('id')
         let token = localStorage.getItem('token')
 
-        fetch(`http://localhost:3000/continue/${id}`, {
+        fetch(`${CONTINUE_URL}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type':'application/json',

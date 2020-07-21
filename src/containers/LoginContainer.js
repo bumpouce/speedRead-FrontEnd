@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+const LOGIN_URL = 'https://readspeedbackend.herokuapp.com/login'
+const NEWUSER_URL = 'https://readspeedbackend.herokuapp.com/users'
 
 export class Login extends Component {
 
@@ -18,7 +20,8 @@ export class Login extends Component {
     handleLogin = (event) => {
         event.preventDefault()
         const { nameLogin, passwordLogin } = this.state
-        fetch('http://localhost:3000/login', {
+        console.log(nameLogin, passwordLogin)
+        fetch(LOGIN_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,10 +36,14 @@ export class Login extends Component {
         })
             .then(r => r.json())
             .then(json => {
-                console.log(json)
-                this.storeToken(json)
-                this.props.history.push('/practice')
-                console.log('Returned from fetch!')
+                if (!json.message){
+                    console.log(json)
+                    this.storeToken(json)
+                    this.props.history.push('/practice')
+                    console.log('Returned from fetch!')
+                }else {
+                    window.location.reload(false)
+                }
             })
     }
 
@@ -44,7 +51,7 @@ export class Login extends Component {
         event.preventDefault()
         const { nameSignup, passwordSignup, firstname, lastname, agreement} = this.state
 
-        fetch('http://localhost:3000/users', {
+        fetch(NEWUSER_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

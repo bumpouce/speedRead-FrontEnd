@@ -80,7 +80,7 @@ class NewTextForm extends PureComponent {
                     'undo redo | removeformat | help'
                 }}
                 onEditorChange={this.analyzeText}
-            />
+            /> <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Be sure to proofread your text for obvious errors and strange characters</span></span><br></br><br></br>
             {(this.state.level !== "") ? <h4>Reading Level: {this.state.level}<span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">Estimated grade level difficulty of this reading</span></span></h4>  : null}
             <Button onClick={(event) => this.props.onAddNew(this.state)}>Submit New Text</Button>
             <span className="form-item"><img src={question} alt="info" className="tip-image"/><span className="form-tip">This piece will be available for all users to read</span></span>

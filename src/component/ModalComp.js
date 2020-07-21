@@ -15,7 +15,7 @@ const ModalComp = ({closeModal}) => {
                     <p className="practice-state">Finished!</p>
                     <p>Your results have been saved.</p>
                     <ul className="share-buttons">
-                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.localhost3000%2F&quote=ComePlayPairUp!" title="Share on Facebook" target="_blank"><img alt="Share on Facebook" src={fb} /></a></li>
+                        {/* <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.localhost3000%2F&quote=ComePlayPairUp!" title="Share on Facebook" target="_blank"><img alt="Share on Facebook" src={fb} /></a></li> */}
                         <li><a href="mailto:?subject=PairUp!&body=Come%20play%20this%20super%20fun%20memory%20game%20and%20improve%20your%20memory!:%20http%3A%2F%2Fwww.localhost3000%2F" target="_blank" title="Send email"><img alt="Send email" src={email} /></a></li>
                     </ul>
                     <br></br>

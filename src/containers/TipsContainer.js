@@ -8,10 +8,6 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 
-
-// <iframe src="https://giphy.com/embed/3o85xBwvWcj1Z11Gda" className="logo"></iframe>
-
-
 export class Tips extends Component {
     render() {
         return (

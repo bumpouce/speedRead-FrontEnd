@@ -1,4 +1,5 @@
 import React from "react";
+const CHECKUSER_URL = `https://readspeedbackend.herokuapp.com/check_user`
 
 const AuthHOC = WrappedComponent => {
 
@@ -18,7 +19,7 @@ const AuthHOC = WrappedComponent => {
         console.log('Please log in!')
         this.props.history.push("/")
       } else {
-        fetch(`http://localhost:3000/check_user`, {
+        fetch(CHECKUSER_URL, {
             headers:
         { "Content-Type": "application/json",
         Accept: "application/json",

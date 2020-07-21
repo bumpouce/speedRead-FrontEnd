@@ -13,7 +13,7 @@ export class TopBar extends Component {
           <Fragment>
             <Navbar expand="sm">
             <Navbar.Brand href="/home" className="navbar-left"></Navbar.Brand>
-            <iframe src="https://giphy.com/embed/xUA7b2OfgTuVzqpVXq" class="logo"></iframe>
+            <iframe src="https://giphy.com/embed/xUA7b2OfgTuVzqpVXq" class="logo" alt='giphy image person reading'></iframe>
               <Nav className="mr-auto">
                 {(this.props.history.location.pathname == '/practice') ? 
                   <Navbar.Text onClick={ () => {window.location.reload(false)}}>Practice</Navbar.Text> :

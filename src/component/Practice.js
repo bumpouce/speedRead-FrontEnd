@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { Container, Jumbotron} from 'react-bootstrap'
 import ModalComp from '../component/ModalComp'
 import Read from './Read'
 import Review from './Review'
 
-const USER_READING_URL = 'http://localhost:3000/user_readings'
-// const NOTES_URL = `http://localhost:3000/notes`
+const USER_READING_URL = 'https://readspeedbackend.herokuapp.com/user_readings'
 
 class Practice extends Component {
 
@@ -57,7 +55,7 @@ class Practice extends Component {
     }
 
     selectSection = (text, position) => {
-        let cleanText = text.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, " ").replace(/&ldquo;/g, "'").replace(/&rdquo;/g, "'").replace(/&rsquo;/g, "'").replace(/\n|\r/g, "")
+        let cleanText = text.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, " ").replace(/&ldquo;/g, "'").replace(/&rdquo;/g, "'").replace(/&rsquo;/g, "'").replace(/&mdash;/g, ", ").replace(/&amp;/g, "&").replace(/\n|\r/g, "")
         let practiceSet = cleanText.split(" ").filter(el => {return el != "";}).slice(position,position+250)
         return practiceSet
     }

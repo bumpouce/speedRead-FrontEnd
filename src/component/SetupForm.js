@@ -6,7 +6,7 @@ import ExistingTextForm from './ExistingTextForm'
 import NewTextForm from './NewTextForm'
 import question from '../images/question.png'
 
-const ReadingURL = "http://localhost:3000/readings/"
+const ReadingURL = "https://readspeedbackend.herokuapp.com/readings/"
 
 export class SetupForm extends Component {
     state = {

@@ -4,6 +4,8 @@ import CalendarHeatmap from 'react-calendar-heatmap'
 import AuthHOC from '../HOC/AuthHOC'
 import '../CSS/Stats.css'
 
+const STATS_URL = 'https://readspeedbackend.herokuapp.com/user_reading_stats'
+
 export class Charts extends Component {
     state={
         user_readings: []
@@ -11,7 +13,7 @@ export class Charts extends Component {
 
     componentDidMount(){
         let id = localStorage.getItem('id')
-        fetch(`http://localhost:3000/user_reading_stats/${id}`, {
+        fetch(`${STATS_URL}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type':'application/json',
