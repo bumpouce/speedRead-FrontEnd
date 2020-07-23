@@ -28,7 +28,7 @@ export default class App extends PureComponent {
   render() {
       return (
         <Fragment>
-        <Router>
+        <Router basename={'/speedRead-FrontEnd'}>
         <Route path="/" render={props => <NavBar  {...props} onLogout={this.onLogout}/>}/>
         <Route exact path="/"> {this.state.user ? <Redirect to="/practice" /> : <Redirect to="/login"/>}</Route>
         <Route exact path="/login" render={props => <Login {...props} onLogin={this.setUser} />}/>
