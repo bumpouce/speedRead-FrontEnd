@@ -28,13 +28,13 @@ export default class App extends PureComponent {
   render() {
       return (
         <Fragment>
-        <Router>
-        <Route path="/" render={props => <NavBar  {...props} onLogout={this.onLogout}/>}/>
-        <Route exact path="/speedRead-FrontEnd"> {this.state.user ? <Redirect to="/practice" /> : <Redirect to="/login"/>}</Route>
-        <Route exact path="/login" render={props => <Login {...props} onLogin={this.setUser} />}/>
-        <Route path= '/stats' render={props => <Charts {...props} setUser={this.setUser} />}/>
-        <Route path= '/tips' render={props => <Tips {...props} setUser={this.setUser} /> } />
-        <Route path= '/practice' render={props => <Read {...props} setUser={this.setUser} />} />
+        <Router basename={'/speedRead-FrontEnd'}>
+        <Route path={`${process.env.PUBLIC_URL}/`} render={props => <NavBar  {...props} onLogout={this.onLogout}/>}/>
+        <Route exact path={`${process.env.PUBLIC_URL}/`}> {this.state.user ? <Redirect to={`${process.env.PUBLIC_URL}/practice`} /> : <Redirect to={`${process.env.PUBLIC_URL}/login`}/>}</Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/login`} render={props => <Login {...props} onLogin={this.setUser} />}/>
+        <Route path= {`${process.env.PUBLIC_URL}/stats`} render={props => <Charts {...props} setUser={this.setUser} />}/>
+        <Route path= {`${process.env.PUBLIC_URL}/tips`} render={props => <Tips {...props} setUser={this.setUser} /> } />
+        <Route path= {`${process.env.PUBLIC_URL}/practice`} render={props => <Read {...props} setUser={this.setUser} />} />
         </Router>
         <Footer />
         </Fragment>
