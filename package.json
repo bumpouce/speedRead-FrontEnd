@@ -10,7 +10,7 @@
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "link": "^0.1.5",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-accessible-accordion": "^3.0.1",
     "react-bootstrap": "^1.0.1",
