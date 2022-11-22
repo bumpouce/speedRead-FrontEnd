@@ -22,7 +22,7 @@
     "react-elastic-carousel": "^0.6.4",
     "react-native-cli": "^2.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-speech": "^1.0.2",
     "speak-tts": "^2.0.8",
     "styled-components": "^5.1.1",
